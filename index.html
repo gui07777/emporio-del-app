@@ -1,886 +1,396 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empório Del – Nutrição & Emagrecimento</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
-  <style>
-    /* =============================================
-       CSS CUSTOM PROPERTIES
-    ============================================= */
-    :root {
-      --green-dark:   #2d5016;
-      --green-mid:    #4a7c2f;
-      --green-light:  #7ab648;
-      --gold:         #c8952a;
-      --gold-light:   #e8b94a;
-      --cream:        #f5f0e8;
-      --cream-dark:   #ede5d4;
-      --brown:        #6b4226;
-      --white:        #ffffff;
-      --text-dark:    #1e2b10;
-      --text-body:    #3a3a2e;
-      --shadow-sm:    0 2px 8px rgba(0,0,0,.10);
-      --shadow-md:    0 6px 24px rgba(0,0,0,.14);
-      --shadow-lg:    0 12px 40px rgba(0,0,0,.18);
-      --radius-sm:    10px;
-      --radius-md:    18px;
-      --radius-lg:    30px;
-      --radius-pill:  999px;
-    }
-
-    /* =============================================
-       RESET & BASE
-    ============================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--cream);
-      color: var(--text-body);
-      overflow-x: hidden;
-    }
-
-    /* =============================================
-       BACKGROUND TEXTURE / WOOD GRAIN EFFECT
-    ============================================= */
-    .bg-texture {
-      background-color: var(--cream);
-      background-image:
-        repeating-linear-gradient(
-          92deg,
-          rgba(139,100,60,.04) 0px,
-          rgba(139,100,60,.04) 1px,
-          transparent 1px,
-          transparent 60px
-        ),
-        repeating-linear-gradient(
-          180deg,
-          rgba(139,100,60,.03) 0px,
-          rgba(139,100,60,.03) 1px,
-          transparent 1px,
-          transparent 80px
-        );
-    }
-
-    /* =============================================
-       DECORATIVE LEAF SVG (reusable)
-    ============================================= */
-    .leaf-deco {
-      position: absolute;
-      opacity: .18;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* =============================================
-       PAGE WRAPPER
-    ============================================= */
-    .page {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 0 16px 40px;
-    }
-
-    /* =============================================
-       HEADER / HERO SECTION
-    ============================================= */
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 36px 24px 28px;
-      background: linear-gradient(160deg, var(--cream) 55%, #dff0c8 100%);
-      border-bottom: 3px solid var(--green-light);
-      overflow: hidden;
-    }
-
-    /* corner badges */
-    .badge-corner {
-      position: absolute;
-      top: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 2px;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      font-size: .65rem;
-      font-weight: 800;
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      padding: 12px;
-      box-shadow: var(--shadow-md);
-      animation: fadeInScale .8s ease both;
-    }
-
-    .badge-corner.left {
-      left: 16px;
-      background: var(--green-dark);
-      color: var(--gold-light);
-      border: 3px solid var(--gold);
-    }
-
-    .badge-corner.right {
-      right: 16px;
-      background: var(--gold);
-      color: var(--green-dark);
-      border: 3px solid var(--green-dark);
-    }
-
-    .badge-corner span.big {
-      font-size: .9rem;
-    }
-
-    /* logo tree icon */
-    .logo-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      animation: fadeInDown .7s ease both;
-    }
-
-    .logo-icon {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 4px solid var(--gold);
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 6px;
-    }
-
-    .logo-icon svg {
-      width: 60px;
-      height: 60px;
-    }
-
-    .logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--green-dark);
-      line-height: 1;
-    }
-
-    .logo-name em {
-      color: var(--gold);
-      font-style: italic;
-    }
-
-    .logo-tagline {
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--green-mid);
-      margin-top: 4px;
-    }
-
-    /* =============================================
-       TITLE BANNER – HORÁRIO DE FUNCIONAMENTO
-    ============================================= */
-    .title-banner {
-      margin: 28px 0 20px;
-      animation: fadeInUp .7s .15s ease both;
-    }
-
-    .title-banner h1 {
-      font-family: 'Nunito', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--green-dark);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      line-height: 1.1;
-    }
-
-    .title-banner h1 span {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0;
-    }
-
-    .title-banner h1 span::after {
-      content: ' ♥';
-      font-style: normal;
-      font-size: 1.6rem;
-      color: var(--green-light);
-    }
-
-    /* =============================================
-       MAIN LAYOUT – 2 COLUMNS ON WIDE
-    ============================================= */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    @media (max-width: 620px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .title-banner h1 { font-size: 1.7rem; }
-      .title-banner h1 span { font-size: 2rem; }
-      .logo-name { font-size: 2rem; }
-      .badge-corner { width: 80px; height: 80px; font-size: .58rem; top: 10px; }
-      .badge-corner.left { left: 8px; }
-      .badge-corner.right { right: 8px; }
-    }
-
-    /* =============================================
-       SCHEDULE CARDS
-    ============================================= */
-    .schedule-col {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      animation: fadeInLeft .7s .2s ease both;
-    }
-
-    .schedule-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    .schedule-card:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* card color variants */
-    .card-week  { background: var(--green-dark); color: var(--white); }
-    .card-sat   { background: var(--gold);       color: var(--green-dark); }
-    .card-sun   { background: var(--green-mid);  color: var(--white); }
-
-    .card-icon {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,.18);
-      border: 2px solid rgba(255,255,255,.35);
-    }
-
-    .card-icon svg {
-      width: 26px;
-      height: 26px;
-    }
-
-    .card-info { flex: 1; }
-
-    .card-day {
-      font-size: .7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      opacity: .75;
-    }
-
-    .card-label {
-      font-size: .82rem;
-      font-weight: 600;
-      opacity: .85;
-      margin-bottom: 4px;
-    }
-
-    .card-time {
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .card-time-range {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.35rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .card-time-range .sep {
-      font-size: .9rem;
-      font-weight: 600;
-      opacity: .7;
-    }
-
-    /* card shimmer overlay on hover */
-    .schedule-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.12) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform .5s ease;
-    }
-
-    .schedule-card:hover::after {
-      transform: translateX(100%);
-    }
-
-    /* =============================================
-       INFO COLUMN – RIGHT SIDE
-    ============================================= */
-    .info-col {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      animation: fadeInRight .7s .2s ease both;
-    }
-
-    /* CTA callout box */
-    .callout-box {
-      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-      color: var(--white);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .callout-box::before {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 90px; height: 90px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.07);
-    }
-
-    .callout-box p {
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.35;
-    }
-
-    .callout-box p em {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--gold-light);
-    }
-
-    .callout-box p em::after {
-      content: ' ♥';
-      font-style: normal;
-      font-size: 1rem;
-    }
-
-    /* Feature list */
-    .feature-box {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--cream-dark);
-    }
-
-    .feature-item:last-child { border-bottom: none; }
-
-    .feature-icon {
-      width: 22px;
-      height: 22px;
-      flex-shrink: 0;
-      background: var(--green-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .feature-icon svg { width: 12px; height: 12px; }
-
-    .feature-text {
-      font-size: .85rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.3;
-    }
-
-    /* Product image box */
-    .product-box {
-      background: var(--gold);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .product-box .product-emoji {
-      font-size: 3rem;
-      line-height: 1;
-    }
-
-    .product-box .product-text {
-      font-size: .82rem;
-      font-weight: 800;
-      color: var(--green-dark);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .product-box .product-text span {
-      display: block;
-      font-size: 1.05rem;
-    }
-
-    /* visit CTA button */
-    .visit-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-      color: var(--white);
-      font-family: 'Nunito', sans-serif;
-      font-size: .9rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      padding: 13px 24px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      text-align: center;
-      border: 3px solid var(--gold);
-      box-shadow: var(--shadow-md);
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-      cursor: pointer;
-    }
-
-    .visit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-      background: linear-gradient(135deg, var(--green-mid), var(--green-light));
-    }
-
-    /* =============================================
-       MISSION STRIP
-    ============================================= */
-    .mission-strip {
-      margin: 28px 0 0;
-      text-align: center;
-      animation: fadeInUp .7s .35s ease both;
-    }
-
-    .mission-strip p {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--green-dark);
-    }
-
-    .mission-strip p strong {
-      color: var(--gold);
-      font-style: normal;
-    }
-
-    /* =============================================
-       FOOTER – CONTACT BAR
-    ============================================= */
-    .contact-bar {
-      margin-top: 28px;
-      background: var(--green-dark);
-      border-radius: var(--radius-lg);
-      padding: 16px 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-around;
-      gap: 14px;
-      box-shadow: var(--shadow-md);
-      animation: fadeInUp .7s .45s ease both;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--white);
-      text-decoration: none;
-      font-size: .78rem;
-      font-weight: 700;
-      transition: color .2s;
-    }
-
-    .contact-item:hover { color: var(--gold-light); }
-
-    .contact-item .ci-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.15);
-      border: 2px solid rgba(255,255,255,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contact-item .ci-icon svg { width: 16px; height: 16px; }
-
-    .contact-item .ci-text { line-height: 1.3; }
-    .contact-item .ci-label { display: block; font-size: .65rem; opacity: .7; text-transform: uppercase; letter-spacing: .05em; }
-
-    @media (max-width: 500px) {
-      .contact-bar { flex-direction: column; align-items: flex-start; padding: 16px 20px; }
-    }
-
-    /* =============================================
-       ANIMATIONS
-    ============================================= */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-24px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes fadeInRight {
-      from { opacity: 0; transform: translateX(24px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(.7); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes pulse-ring {
-      0%   { box-shadow: 0 0 0 0 rgba(200, 149, 42, .55); }
-      70%  { box-shadow: 0 0 0 12px rgba(200, 149, 42, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(200, 149, 42, 0); }
-    }
-
-    .visit-btn { animation: pulse-ring 2.2s infinite; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empório Del – Nutrição & Emagrecimento | Osasco SP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-texture">
-<div class="page">
+<body>
 
-  <!-- ======== HERO ======== -->
-  <section class="hero">
-
-    <!-- Left badge -->
-    <div class="badge-corner left">
-      <span>Saúde</span>
-      <span>Qualidade</span>
-      <span>&amp; Bem-Estar</span>
-      <span class="big">para você!</span>
+    <div class="live-bar" id="live-bar">
+        <div class="live-dot" id="live-dot"></div>
+        <span id="live-text">Verificando horário atual…</span>
     </div>
 
-    <!-- Right badge -->
-    <div class="badge-corner right">
-      <span>Produtos</span>
-      <span>Naturais</span>
-      <span class="big">Qualidade</span>
-      <span>Premium</span>
-    </div>
+    <nav id="nav">
+        <a href="#" class="nav-logo">Empório<em>Del</em></a>
+        <ul class="nav-links">
+            <li><a href="#horarios">Horários</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <a href="https://wa.me/5511940815911" target="_blank" class="nav-cta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                    d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.524 5.855L0 24l6.341-1.498A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-5.003-1.371l-.36-.213-3.764.889.957-3.67-.234-.376A9.78 9.78 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+            </svg>
+            Falar pelo WhatsApp
+        </a>
+    </nav>
 
-    <!-- Logo -->
-    <div class="logo-wrap">
-      <div class="logo-icon">
-        <!-- Simple tree SVG matching the brand -->
-        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <circle cx="40" cy="28" r="22" fill="#4a7c2f" opacity=".15"/>
-          <!-- trunk -->
-          <rect x="36" y="48" width="8" height="18" rx="4" fill="#6b4226"/>
-          <!-- crown layers -->
-          <ellipse cx="40" cy="24" rx="20" ry="18" fill="#7ab648"/>
-          <ellipse cx="40" cy="18" rx="15" ry="13" fill="#4a7c2f"/>
-          <ellipse cx="40" cy="13" rx="10" ry="9" fill="#2d5016"/>
-          <!-- gold dots (fruits/seeds) -->
-          <circle cx="29" cy="26" r="3" fill="#c8952a"/>
-          <circle cx="51" cy="22" r="2.5" fill="#e8b94a"/>
-          <circle cx="38" cy="30" r="2" fill="#c8952a"/>
-        </svg>
-      </div>
-      <div class="logo-name">Empório<em>Del</em></div>
-      <div class="logo-tagline">Nutrição &amp; Emagrecimento</div>
-    </div>
+    <section class="hero">
+        <div class="leaf-grid"></div>
+        <div class="hero-ring-3"></div>
 
-  </section><!-- /hero -->
-
-  <!-- ======== TITLE BANNER ======== -->
-  <div class="title-banner" style="text-align:center;">
-    <h1>
-      Horário de
-      <span>Funcionamento</span>
-    </h1>
-  </div>
-
-  <!-- ======== MAIN GRID ======== -->
-  <div class="main-grid">
-
-    <!-- LEFT: Schedule cards -->
-    <div class="schedule-col">
-
-      <!-- Monday – Friday -->
-      <div class="schedule-card card-week">
-        <div class="card-icon">
-          <!-- Clock icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
+        <div class="logo-mark">
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="36" y="50" width="8" height="16" rx="4" fill="#8B6534" />
+                <ellipse cx="40" cy="34" rx="22" ry="20" fill="#3f7022" />
+                <ellipse cx="40" cy="26" rx="16" ry="14" fill="#2d5018" />
+                <ellipse cx="40" cy="19" rx="10" ry="9" fill="#1a3010" />
+                <circle cx="29" cy="34" r="3.5" fill="#d4aa50" />
+                <circle cx="51" cy="30" r="3" fill="#b8882a" />
+                <circle cx="40" cy="40" r="2.5" fill="#d4aa50" />
+                <circle cx="45" cy="24" r="2" fill="#f0cc78" />
+            </svg>
         </div>
-        <div class="card-info">
-          <div class="card-day">De Segunda a Sexta</div>
-          <div class="card-label">Loja aberta até às</div>
-          <div class="card-time">19h00</div>
-        </div>
-      </div>
 
-      <!-- Saturday -->
-      <div class="schedule-card card-sat">
-        <div class="card-icon">
-          <!-- Heart / calendar icon -->
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </div>
-        <div class="card-info">
-          <div class="card-day">Sábado</div>
-          <div class="card-label">Horário</div>
-          <div class="card-time-range">
-            <span>9h00</span>
-            <span class="sep">às</span>
-            <span>16h00</span>
-          </div>
-        </div>
-      </div>
+        <p class="hero-tagline">Osasco, SP &nbsp;·&nbsp; Produtos Naturais &amp; Premium</p>
+        <h1 class="hero-brand">Empório<em>Del</em></h1>
+        <p class="hero-sub">Nutrição &amp; Emagrecimento</p>
 
-      <!-- Sunday -->
-      <div class="schedule-card card-sun">
-        <div class="card-icon">
-          <!-- Sun / leaf icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a9 9 0 0 1 0 18A9 9 0 0 1 12 2z"/>
-            <path d="M12 8c-2.5 0-4 1.5-4 4s1.5 4 4 4 4-1.5 4-4"/>
-          </svg>
-        </div>
-        <div class="card-info">
-          <div class="card-day">Domingo</div>
-          <div class="card-label">Horário</div>
-          <div class="card-time-range">
-            <span>9h00</span>
-            <span class="sep">às</span>
-            <span>13h00</span>
-          </div>
-        </div>
-      </div>
+        <div class="gold-line"></div>
 
-    </div><!-- /schedule-col -->
-
-    <!-- RIGHT: Info -->
-    <div class="info-col">
-
-      <!-- Callout -->
-      <div class="callout-box">
-        <p>
-          Estamos sempre prontos para
-          <em>atender você!</em>
+        <p class="hero-claim">
+            Cuidar de você é <strong>a nossa missão.</strong><br />
+            Saúde, qualidade e bem-estar para toda a família.
         </p>
-      </div>
 
-      <!-- Feature list -->
-      <div class="feature-box">
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 12 12" fill="white"><path d="M5 8.5l-3-3 1-1 2 2 4-4 1 1z"/></svg>
-          </div>
-          <div class="feature-text">Produtos naturais</div>
+        <div style="height:36px"></div>
+
+        <div class="badges-row">
+            <div class="badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                Produtos Premium
+            </div>
+            <div class="badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                100% Naturais
+            </div>
+            <div class="badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                </svg>
+                Atendimento Especializado
+            </div>
+            <div class="badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                Compre Online
+            </div>
         </div>
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 12 12" fill="white"><path d="M5 8.5l-3-3 1-1 2 2 4-4 1 1z"/></svg>
-          </div>
-          <div class="feature-text">Acompanhamento especializado</div>
+
+        <div class="scroll-hint">
+            <div class="scroll-arrow"></div>
+            <span>Explorar</span>
         </div>
-        <div class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 12 12" fill="white"><path d="M5 8.5l-3-3 1-1 2 2 4-4 1 1z"/></svg>
-          </div>
-          <div class="feature-text">Mais saúde e qualidade de vida</div>
+    </section>
+
+    <section class="section" id="horarios">
+        <p class="section-label reveal">Quando nos encontrar</p>
+        <h2 class="section-title reveal">Horário de <em>Funcionamento</em></h2>
+
+        <div class="schedule-grid">
+
+            <div class="sched-card card-week reveal reveal-delay-1">
+                <div class="card-day-label">Dias úteis</div>
+                <div class="card-day-name">Segunda<br />a Sexta</div>
+                <div class="card-divider"></div>
+                <div class="card-time-label">Loja aberta até</div>
+                <div class="card-time-val">19h00</div>
+            </div>
+
+            <div class="sched-card card-sat reveal reveal-delay-2">
+                <div class="card-day-label">Fim de semana</div>
+                <div class="card-day-name">Sábado</div>
+                <div class="card-divider"></div>
+                <div class="card-time-label">Horário de funcionamento</div>
+                <div class="card-time-range">
+                    <div class="card-time-val">9h</div>
+                    <span class="sep">às</span>
+                    <div class="card-time-val">16h</div>
+                </div>
+            </div>
+
+            <div class="sched-card card-sun reveal reveal-delay-3">
+                <div class="card-day-label">Fim de semana</div>
+                <div class="card-day-name">Domingo</div>
+                <div class="card-divider"></div>
+                <div class="card-time-label">Horário de funcionamento</div>
+                <div class="card-time-range">
+                    <div class="card-time-val">9h</div>
+                    <span class="sep">às</span>
+                    <div class="card-time-val">13h</div>
+                </div>
+            </div>
+
         </div>
-      </div>
 
-      <!-- Product showcase -->
-      <div class="product-box">
-        <div class="product-emoji">🌾</div>
-        <div class="product-text">
-          <span>Empório Del</span>
-          Grãos &amp; Naturais<br/>Selecionados
+        <table class="hours-table reveal">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Abertura</th>
+                    <th>Fechamento</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Segunda-feira</td>
+                    <td>08h00</td>
+                    <td>19h00</td>
+                    <td><span class="status-dot status-open" id="status-seg">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Terça-feira</td>
+                    <td>08h00</td>
+                    <td>19h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Quarta-feira</td>
+                    <td>08h00</td>
+                    <td>19h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Quinta-feira</td>
+                    <td>08h00</td>
+                    <td>19h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Sexta-feira</td>
+                    <td>08h00</td>
+                    <td>19h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Sábado</td>
+                    <td>09h00</td>
+                    <td>16h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+                <tr>
+                    <td>Domingo</td>
+                    <td>09h00</td>
+                    <td>13h00</td>
+                    <td><span class="status-dot status-open">Aberto</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Products -->
+        <div class="product-strip reveal">
+            <div class="product-pill"><span>🌾</span> Grãos selecionados</div>
+            <div class="product-pill"><span>🥜</span> Castanhas e nozes</div>
+            <div class="product-pill"><span>🌿</span> Ervas e temperos</div>
+            <div class="product-pill"><span>🍯</span> Méis naturais</div>
+            <div class="product-pill"><span>🫘</span> Leguminosas</div>
+            <div class="product-pill"><span>🌻</span> Sementes</div>
+            <div class="product-pill"><span>🧉</span> Chás e fitoterápicos</div>
         </div>
-      </div>
 
-      <!-- Visit CTA -->
-      <div style="text-align:center; margin-top:4px;">
-        <a class="visit-btn" href="#">🍃 Venha nos Visitar!</a>
-      </div>
+    </section>
 
-    </div><!-- /info-col -->
-  </div><!-- /main-grid -->
+    <section class="mission" id="sobre">
+        <div class="gold-line" style="margin-bottom:32px;"></div>
+        <blockquote class="mission-quote">
+            "Cada produto que oferecemos carrega <strong>cuidado, conhecimento e propósito,</strong> porque a sua saúde
+            merece o melhor."
+        </blockquote>
+        <p class="mission-attr">Empório Del · Nutrição &amp; Emagrecimento</p>
+        <div class="gold-line" style="margin-top:32px;"></div>
+    </section>
 
-  <!-- ======== MISSION STRIP ======== -->
-  <div class="mission-strip">
-    <p>Cuidar de você <strong>é a nossa missão!</strong> ♥</p>
-  </div>
+    <section class="section">
+        <p class="section-label reveal">Por que nos escolher</p>
+        <h2 class="section-title reveal">O que nos <em>diferencia</em></h2>
 
-  <!-- ======== CONTACT BAR ======== -->
-  <div class="contact-bar">
+        <div class="features-grid">
+            <div class="feature-item reveal">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                </div>
+                <div class="feature-title">Qualidade Premium</div>
+                <div class="feature-desc">Selecionamos rigorosamente cada produto para garantir frescor, procedência e
+                    máxima qualidade nutricional.</div>
+            </div>
+            <div class="feature-item reveal reveal-delay-1">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="7" />
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                    </svg>
+                </div>
+                <div class="feature-title">Equipe Especializada</div>
+                <div class="feature-desc">Nossa equipe está sempre pronta para orientar você na escolha dos melhores
+                    produtos para o seu objetivo.</div>
+            </div>
+            <div class="feature-item reveal reveal-delay-2">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                </div>
+                <div class="feature-title">Saúde &amp; Bem-Estar</div>
+                <div class="feature-desc">Acreditamos que uma alimentação natural e equilibrada é o caminho para uma
+                    vida mais plena e saudável.</div>
+            </div>
+            <div class="feature-item reveal reveal-delay-3">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </div>
+                <div class="feature-title">Loja Online</div>
+                <div class="feature-desc">Compre sem sair de casa com praticidade e segurança pela nossa plataforma de
+                    compras digitais.</div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Location -->
-    <a class="contact-item" href="https://maps.google.com/?q=Osasco+SP+Jd+Novo+Osasco" target="_blank" rel="noopener">
-      <div class="ci-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-      </div>
-      <div class="ci-text">
-        <span class="ci-label">Localização</span>
-        Osasco – SP<br/>Jd. Novo Osasco
-      </div>
-    </a>
+    <section class="cta-section" id="contato">
+        <div class="cta-card reveal">
+            <p class="cta-label">Estamos prontos para atender você</p>
+            <h2 class="cta-heading">Venha nos<br />visitar hoje</h2>
+            <p class="cta-body">
+                Jd. Novo Osasco, Osasco – SP.<br />
+                Ou entre em contato pelo WhatsApp, Instagram ou compre diretamente pela nossa loja online.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/5511940815911" target="_blank" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.524 5.855L0 24l6.341-1.498A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-5.003-1.371l-.36-.213-3.764.889.957-3.67-.234-.376A9.78 9.78 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="https://instagram.com/emporiodelmilgraos" target="_blank" class="btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://emporiodel.smartpos.app" target="_blank" class="btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                    Loja Online
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <!-- WhatsApp -->
-    <a class="contact-item" href="https://wa.me/5511949885090" target="_blank" rel="noopener">
-      <div class="ci-icon">
-        <svg viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.524 5.855L0 24l6.341-1.498A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-5.003-1.371l-.36-.213-3.764.889.957-3.67-.234-.376A9.78 9.78 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-        </svg>
-      </div>
-      <div class="ci-text">
-        <span class="ci-label">WhatsApp</span>
-        11 94885-5090
-      </div>
-    </a>
-
-    <!-- Instagram -->
-    <a class="contact-item" href="https://instagram.com/emporiodelmilgraos" target="_blank" rel="noopener">
-      <div class="ci-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-      </div>
-      <div class="ci-text">
-        <span class="ci-label">Instagram</span>
-        @emporiodelmilgraos
-      </div>
-    </a>
-
-    <!-- Online store -->
-    <a class="contact-item" href="https://emporiodel.smartpos.app" target="_blank" rel="noopener">
-      <div class="ci-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
-      </div>
-      <div class="ci-text">
-        <span class="ci-label">Compre Online</span>
-        emporiodel.smartpos.app
-      </div>
-    </a>
-
-  </div><!-- /contact-bar -->
-
-</div><!-- /page -->
-
-<script>
-  /* ================================================
-     Animate schedule cards on intersection
-  ================================================ */
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.schedule-card');
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationDelay = `${idx * 0.12}s`;
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      cards.forEach(card => observer.observe(card));
-    }
-
-    /* Ripple effect on visit button */
-    const btn = document.querySelector('.visit-btn');
-    btn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      const ripple = document.createElement('span');
-      ripple.style.cssText = `
-        position:absolute; border-radius:50%;
-        width:60px; height:60px;
-        background:rgba(255,255,255,.35);
-        transform:scale(0);
-        animation:ripple-anim .55s linear;
-        left:${e.offsetX - 30}px; top:${e.offsetY - 30}px;
-        pointer-events:none;
-      `;
-      btn.style.position = 'relative';
-      btn.style.overflow = 'hidden';
-      btn.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 600);
-    });
-  });
-</script>
-
-<style>
-  @keyframes ripple-anim {
-    to { transform: scale(4); opacity: 0; }
-  }
-</style>
-
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Empório<em>Del</em></div>
+                    <div class="footer-brand-sub">Nutrição &amp; Emagrecimento</div>
+                    <div style="margin-top:20px; font-size:.78rem; color:rgba(255,255,255,.4); line-height:1.7;">
+                        Seu destino de produtos naturais<br />e saudáveis em Osasco, SP.
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="contact-group">
+                        <div class="contact-group-label">Localização</div>
+                        <a class="contact-link"
+                            href="https://www.google.com/maps/place/R.+Jo%C3%A3o+Carlos+Munhoz+Vaquero,+581+-+Novo+Osasco,+Osasco+-+SP,+06142-150/@-23.5725568,-46.8036176,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce556401fa2e37:0xf26aad3d9aedfe6a!8m2!3d-23.5725568!4d-46.8010427!16s%2Fg%2F11pw0x80fg?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Rua João Carlos Munhoz Vaqueiro, 581<br />Osasco – SP
+                        </a>
+                    </div>
+                    <div class="contact-group">
+                        <div class="contact-group-label">Contato</div>
+                        <a class="contact-link" href="https://wa.me/5511940815911" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                <path
+                                    d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.524 5.855L0 24l6.341-1.498A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-5.003-1.371l-.36-.213-3.764.889.957-3.67-.234-.376A9.78 9.78 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                            </svg>
+                            (11) 94081-5911
+                        </a>
+                    </div>
+                    <div class="contact-group">
+                        <div class="contact-group-label">Redes Sociais</div>
+                        <a class="contact-link" href="https://instagram.com/emporiodelmilgraos" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                            @emporiodelmilgraos
+                        </a>
+                        <a class="contact-link" href="https://emporiodel.smartpos.app" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                            </svg>
+                            Loja Online
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Todos os direitos reservados.</div>
+                <div class="footer-copy">Desenvolvido por <a class="spark" target="_blank" href="https://spark-technology.vercel.app/">Spark Technology.</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
+
 </html>
