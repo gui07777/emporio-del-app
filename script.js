@@ -1,20 +1,17 @@
-/* ─── NAV SCROLL ─── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* ─── REVEAL ON SCROLL ─── */
 const reveals = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); } });
 }, { threshold: 0.12 });
 reveals.forEach(el => revealObs.observe(el));
 
-/* ─── LIVE STATUS BAR ─── */
 function updateLiveStatus() {
     const now = new Date();
-    const day = now.getDay();   // 0=Sun, 1=Mon … 6=Sat
+    const day = now.getDay();
     const hour = now.getHours();
     const min = now.getMinutes();
     const time = hour + min / 60;
@@ -46,7 +43,6 @@ function updateLiveStatus() {
         text.innerHTML = `<strong>Fechado no momento</strong> — ${dayName} · ${nextInfo}`;
     }
 
-    /* update table status cells dynamically */
     const rows = document.querySelectorAll('.hours-table tbody tr');
     const schedule = [
         { days: [1, 2, 3, 4, 5], open: 8, close: 19 },

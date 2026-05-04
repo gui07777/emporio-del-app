@@ -43,7 +43,6 @@
             min-height: 100vh;
         }
 
-        /* ─── NOISE TEXTURE ─── */
         body::before {
             content: '';
             position: fixed;
@@ -53,7 +52,6 @@
             z-index: 0;
         }
 
-        /* ─── HERO ─── */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -67,7 +65,6 @@
             z-index: 1;
         }
 
-        /* Decorative rings */
         .hero::before,
         .hero::after {
             content: '';
@@ -106,7 +103,6 @@
             pointer-events: none;
         }
 
-        /* Leaf grid bg */
         .leaf-grid {
             position: absolute;
             inset: 0;
@@ -117,7 +113,6 @@
             pointer-events: none;
         }
 
-        /* Gold divider line */
         .gold-line {
             width: 60px;
             height: 1px;
@@ -125,7 +120,6 @@
             margin: 20px auto;
         }
 
-        /* Logo mark */
         .logo-mark {
             width: 100px;
             height: 100px;
@@ -212,7 +206,6 @@
             font-weight: 600;
         }
 
-        /* Scroll indicator */
         .scroll-hint {
             position: absolute;
             bottom: 32px;
@@ -252,7 +245,6 @@
             animation: scrollBob 1.6s ease-in-out infinite;
         }
 
-        /* ─── PILL BADGES ─── */
         .badges-row {
             display: flex;
             flex-wrap: wrap;
@@ -282,7 +274,6 @@
             flex-shrink: 0;
         }
 
-        /* ─── SECTION WRAPPER ─── */
         .section {
             position: relative;
             z-index: 1;
@@ -316,7 +307,6 @@
             color: var(--green-3);
         }
 
-        /* ─── SCHEDULE ─── */
         .schedule-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -360,7 +350,6 @@
             border: 1.5px solid var(--cream-3);
         }
 
-        /* Decorative arc */
         .sched-card::before {
             content: '';
             position: absolute;
@@ -464,7 +453,6 @@
             letter-spacing: .06em;
         }
 
-        /* ─── MISSION STRIP ─── */
         .mission {
             background: linear-gradient(135deg, var(--green-1), var(--green-2) 60%, #1f3d10);
             padding: 80px 24px;
@@ -513,7 +501,6 @@
             z-index: 1;
         }
 
-        /* ─── FEATURES STRIP ─── */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -565,14 +552,19 @@
             line-height: 1.6;
         }
 
-        /* ─── HOURS DETAIL TABLE ─── */
+        .table-wrapper {
+            width: 100%;
+            margin-top: 48px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .hours-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 48px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            min-width: 520px;
         }
 
         .hours-table thead tr {
@@ -638,7 +630,6 @@
             background: #c0392b;
         }
 
-        /* ─── CTA SECTION ─── */
         .cta-section {
             padding: 96px 24px;
             text-align: center;
@@ -767,7 +758,6 @@
             transform: translateY(-2px);
         }
 
-        /* ─── FOOTER / CONTACT ─── */
         footer {
             background: var(--text-h);
             padding: 56px 24px 40px;
@@ -880,7 +870,6 @@
             color: var(--cream);
         }
 
-        /* ─── ANIMATIONS ─── */
         @keyframes scaleIn {
             from {
                 opacity: 0;
@@ -931,7 +920,6 @@
             }
         }
 
-        /* Observe-based reveal */
         .reveal {
             opacity: 0;
             transform: translateY(32px);
@@ -955,7 +943,6 @@
             transition-delay: .3s;
         }
 
-        /* ─── LIVE STATUS ─── */
         .live-bar {
             background: var(--cream-2);
             border-bottom: 1px solid var(--cream-3);
@@ -992,7 +979,6 @@
             }
         }
 
-        /* ─── NAV ─── */
         nav {
             position: sticky;
             top: 0;
@@ -1075,7 +1061,6 @@
             }
         }
 
-        /* ─── PRODUCT SHOWCASE ─── */
         .product-strip {
             display: flex;
             gap: 12px;
