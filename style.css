@@ -38,7 +38,7 @@
             font-family: 'DM Sans', sans-serif;
             background: var(--cream);
             color: var(--text-b);
-            overflow-x: hidden;
+            overflow-x: hidden !important;
             min-height: 100vh;
         }
 
